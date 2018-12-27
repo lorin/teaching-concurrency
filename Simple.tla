@@ -1,8 +1,9 @@
 ------------------------------- MODULE Simple -------------------------------
-
-\* From "Teaching Concurrency" by Leslie Lamport
-\* https://www.microsoft.com/en-us/research/publication/teaching-concurrency/
-\* See also: https://stackoverflow.com/a/46108331/742
+(***************************************************************************)
+(* From "Teaching Concurrency" by Leslie Lamport                           *)
+(* https://www.microsoft.com/en-us/research/publication/teaching-concurrency/ *)
+(* See also: https://stackoverflow.com/a/46108331/742                      *)
+(***************************************************************************)
 
 EXTENDS Naturals, TLAPS
 
@@ -15,7 +16,7 @@ variables
     x = [i \in 0..N-1 |->0];
     y = [i \in 0..N-1 |->0];
 
-fair process Proc \in 0..N-1 
+process Proc \in 0..N-1 
 begin
     s1: x[self] := 1;
     s2: y[self] := x[(self-1) % N]
@@ -52,8 +53,7 @@ Next == (\E self \in 0..N-1: Proc(self))
            \/ (* Disjunct to prevent deadlock on termination *)
               ((\A self \in ProcSet: pc[self] = "Done") /\ UNCHANGED vars)
 
-Spec == /\ Init /\ [][Next]_vars
-        /\ \A self \in 0..N-1 : WF_vars(Proc(self))
+Spec == Init /\ [][Next]_vars
 
 Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
