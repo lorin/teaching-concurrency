@@ -9,7 +9,7 @@ In an article titled [Teaching Concurrency], Leslie Lamport wrote:
 
 ```
 x[i] : = 1;
-y[i] : = x [(i − 1) mod N ]
+y[i] : = x[(i − 1) mod N]
 ```
 
 > and stops, where each *x[i]* initially equals 0. (The reads and writes of
