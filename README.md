@@ -8,8 +8,8 @@ In an article titled [Teaching Concurrency], Leslie Lamport wrote:
 > each process i executes
 
 ```
-x[i] : = 1;
-y[i] : = x[(i − 1) mod N]
+x[i] := 1;
+y[i] := x[(i−1) mod N]
 ```
 
 > and stops, where each *x[i]* initially equals 0. (The reads and writes of
